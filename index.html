@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>砂と水の回廊 | 古代インド探訪記</title>
+<meta name="description" content="古代インドの歴史・建築・神話をめぐる個人サイト。日々の記録と写真、コラムを掲載しています。">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Shippori+Mincho:wght@500;700&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sand-pale:   #EACB9C;
+    --sand-main:   #CC9A5D;
+    --sand-deep:   #9C6B36;
+    --sand-shadow: #6B4423;
+    --ink:         #3B2A1D;
+    --marble:      #FBF8F1;
+    --marble-dim:  #EFE7D8;
+    --water:       #7EBBC7;
+    --water-deep:  #3F7E8E;
+    --gold-line:   #B8843F;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--marble);
+    color: var(--ink);
+    font-family: "Noto Serif JP", serif;
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display{
+    font-family: "Shippori Mincho", "Noto Serif JP", serif;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .eyebrow{
+    font-family: "Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--water-deep);
+  }
+
+  a{ color: inherit; }
+
+  img, svg{ display:block; max-width:100%; }
+
+  /* ---------- Jaali lattice texture (signature motif) ---------- */
+  .jaali-bg{
+    background-image:
+      radial-gradient(circle at 10px 10px, rgba(59,42,29,0.06) 2px, transparent 2.4px);
+    background-size: 26px 26px;
+  }
+
+  /* ---------- Header / nav ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(251,248,241,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--sand-main);
+  }
+  .nav-wrap{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand{
+    font-family: "Shippori Mincho", serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--sand-shadow);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-mark{
+    width: 22px; height: 22px;
+    flex-shrink: 0;
+  }
+  nav ul{
+    list-style: none;
+    display: flex;
+    gap: 6px;
+  }
+  nav a{
+    position: relative;
+    display: block;
+    text-decoration: none;
+    padding: 8px 16px 10px;
+    font-size: 0.86rem;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    clip-path: polygon(14% 0, 86% 0, 100% 30%, 100% 100%, 0 100%, 0 30%);
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  nav a:hover, nav a.active{
+    background: var(--sand-pale);
+    color: var(--sand-shadow);
+  }
+  nav a.active::after{
+    content:"";
+    position:absolute;
+    bottom: 3px; left: 50%;
+    width: 4px; height: 4px;
+    background: var(--water-deep);
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+  .nav-toggle{ display:none; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(180deg, #F3DDB4 0%, var(--sand-pale) 42%, var(--sand-main) 78%, var(--sand-deep) 100%);
+  }
+  .hero::before{
+    /* drifting heat-shimmer haze */
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.22) 45%, transparent 60%);
+    background-size: 220% 220%;
+    animation: shimmer 9s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes shimmer{
+    0%,100%{ background-position: 0% 50%; }
+    50%{ background-position: 100% 50%; }
+  }
+
+  .hero-skyline{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    width:100%;
+    opacity: 0.9;
+  }
+
+  .hero-inner{
+    position: relative;
+    z-index: 3;
+    padding: 0 24px;
+    max-width: 760px;
+  }
+
+  .hero-arch{
+    position: relative;
+    margin: 0 auto 28px;
+    width: min(78vw, 420px);
+    padding: 56px 34px 34px;
+    background: rgba(251,248,241,0.9);
+    border: 1.5px solid var(--marble);
+    box-shadow: 0 18px 46px rgba(107,68,35,0.28);
+  }
+  .hero-arch{
+    clip-path: path("M0,220 L0,90 C0,40 40,0 106,0 L314,0 C380,0 420,40 420,90 L420,220 Z");
+  }
+  @supports not (clip-path: path("M0,0")) {
+    .hero-arch{ border-radius: 200px 200px 4px 4px; }
+  }
+
+  .hero h1{
+    font-size: clamp(1.6rem, 4vw, 2.3rem);
+    color: var(--sand-shadow);
+    margin-bottom: 14px;
+  }
+  .hero h1 span{
+    display:block;
+    font-family:"Cinzel", serif;
+    font-size: 0.62rem;
+    font-weight:600;
+    letter-spacing: 0.42em;
+    color: var(--water-deep);
+    margin-bottom: 12px;
+  }
+  .hero p{
+    font-size: 0.92rem;
+    color: var(--ink);
+    opacity: 0.85;
+  }
+
+  .hero-pool{
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 46px;
+    background: linear-gradient(180deg, var(--water) 0%, var(--water-deep) 100%);
+  }
+  .hero-pool::before{
+    content:"";
+    position:absolute; top:-6px; left:0; right:0; height:8px;
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,0.55) 0 18px, transparent 18px 40px);
+    opacity: 0.6;
+  }
+
+  .scroll-cue{
+    position:absolute;
+    bottom: 60px; left:50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    font-family:"Cinzel", serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    color: var(--sand-shadow);
+    opacity: 0.75;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{
+    padding: 96px 24px;
+  }
+  .section-inner{
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .section-head{
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 56px;
+  }
+  .section-head h2{
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    margin: 10px 0 16px;
+    color: var(--sand-shadow);
+  }
+  .rule{
+    width: 64px; height: 2px;
+    margin: 18px auto 0;
+    background: linear-gradient(90deg, transparent, var(--water-deep), transparent);
+  }
+
+  /* ---------- Intro / about teaser ---------- */
+  .intro{
+    background: var(--marble);
+  }
+  .intro-grid{
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .intro-text p{ margin-bottom: 16px; font-size: 0.95rem; }
+  .intro-text .lead{
+    font-family:"Shippori Mincho", serif;
+    font-size: 1.15rem;
+    color: var(--sand-shadow);
+  }
+  .niche{
+    position: relative;
+    background: var(--sand-pale);
+    padding: 44px 26px 26px;
+    clip-path: path("M0,300 L0,120 C0,54 54,0 120,0 L240,0 C306,0 360,54 360,120 L360,300 Z");
+  }
+  .niche ul{ list-style:none; display:flex; flex-direction:column; gap:14px; }
+  .niche li{
+    display:flex; gap:12px; align-items:baseline;
+    font-size: 0.85rem;
+  }
+  .niche li .num{
+    font-family:"Cinzel", serif;
+    font-size: 0.72rem;
+    color: var(--water-deep);
+    letter-spacing: 0.08em;
+  }
+
+  /* ---------- Pillars (blog / gallery teaser) ---------- */
+  .pillars{
+    background: linear-gradient(180deg, var(--marble) 0%, var(--marble-dim) 100%);
+    position: relative;
+  }
+  .pillar-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 34px;
+  }
+  .pillar{
+    position: relative;
+    background: var(--marble);
+    border: 1px solid var(--sand-pale);
+    padding: 40px 26px 28px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .pillar::before{
+    content:"";
+    display:block;
+    width: 100%; height: 34px;
+    margin: -40px -26px 22px;
+    background: var(--sand-main);
+    clip-path: polygon(0 100%, 0 40%, 50% 0, 100% 40%, 100% 100%);
+  }
+  .pillar:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(107,68,35,0.16);
+  }
+  .pillar .eyebrow{ display:block; margin-bottom: 8px; }
+  .pillar h3{ font-size: 1.08rem; margin-bottom: 10px; color: var(--sand-shadow); }
+  .pillar p{ font-size: 0.85rem; opacity: 0.85; margin-bottom: 18px; }
+  .pillar-link{
+    font-family:"Cinzel", serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    color: var(--water-deep);
+    text-decoration: none;
+    border-bottom: 1px solid var(--water);
+    padding-bottom: 3px;
+  }
+
+  /* ---------- Latest diary strip ---------- */
+  .diary{
+    background: var(--sand-shadow);
+    color: var(--marble);
+  }
+  .diary .section-head h2{ color: var(--marble); }
+  .diary .eyebrow{ color: var(--water); }
+  .diary-list{
+    display:flex; flex-direction:column;
+  }
+  .diary-row{
+    display:flex; gap: 24px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(251,248,241,0.18);
+    font-size: 0.86rem;
+  }
+  .diary-row time{
+    flex-shrink:0;
+    width: 100px;
+    font-family:"Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--water);
+  }
+  .diary-more{
+    display:inline-block;
+    margin-top: 28px;
+    font-family:"Cinzel", serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    color: var(--marble);
+    border: 1px solid rgba(251,248,241,0.5);
+    padding: 12px 26px;
+    text-decoration:none;
+  }
+  .diary-more:hover{ background: rgba(251,248,241,0.1); }
+
+  /* ---------- Contact ---------- */
+  .contact{ background: var(--marble); }
+  .contact-box{
+    max-width: 520px;
+    margin: 0 auto;
+    background: var(--marble-dim);
+    border: 1px solid var(--sand-pale);
+    padding: 40px 32px;
+  }
+  .contact-box p{ font-size: 0.85rem; margin-bottom: 22px; text-align:center; opacity:0.85; }
+  .contact-box form{ display:flex; flex-direction:column; gap: 14px; }
+  .contact-box label{ font-size: 0.78rem; color: var(--sand-shadow); }
+  .contact-box input, .contact-box textarea{
+    width:100%;
+    font-family: "Noto Serif JP", serif;
+    font-size: 0.88rem;
+    padding: 10px 12px;
+    border: 1px solid var(--sand-main);
+    background: var(--marble);
+    color: var(--ink);
+  }
+  .contact-box textarea{ min-height: 110px; resize: vertical; }
+  .contact-box button{
+    margin-top: 6px;
+    align-self: center;
+    font-family:"Cinzel", serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    background: var(--water-deep);
+    color: var(--marble);
+    border: none;
+    padding: 13px 34px;
+    cursor: pointer;
+    transition: background 0.25s ease;
+  }
+  .contact-box button:hover{ background: var(--sand-shadow); }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background: var(--ink);
+    color: var(--sand-pale);
+    padding: 52px 24px 30px;
+    font-size: 0.78rem;
+  }
+  .footer-inner{
+    max-width: 1080px;
+    margin: 0 auto;
+    display:flex;
+    flex-direction:column;
+    gap: 22px;
+  }
+  .footer-links{
+    display:flex; flex-wrap:wrap; gap: 18px;
+  }
+  .footer-links a{ text-decoration:none; color: var(--sand-pale); opacity:0.85; }
+  .footer-links a:hover{ opacity:1; color: var(--water); }
+  .footer-notice{
+    border-top: 1px solid rgba(234,203,156,0.2);
+    padding-top: 20px;
+    line-height: 1.8;
+    opacity: 0.75;
+    font-size: 0.72rem;
+  }
+  .footer-bottom{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    opacity: 0.6; font-size: 0.7rem;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px){
+    .intro-grid{ grid-template-columns: 1fr; }
+    .pillar-grid{ grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px){
+    .nav-wrap{ padding: 14px 16px; }
+    nav ul{ gap: 2px; }
+    nav a{ padding: 7px 10px 8px; font-size: 0.76rem; }
+    section{ padding: 68px 18px; }
+    .diary-row{ flex-direction:column; gap:4px; }
+    .diary-row time{ width:auto; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .hero::before{ animation:none; }
+    .pillar{ transition:none; }
+  }
+
+  :focus-visible{
+    outline: 2px solid var(--water-deep);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a class="brand" href="index.html">
+      <svg class="brand-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 22 L2 12 C2 6 6 2 12 2 C18 2 22 6 22 12 L22 22 Z" fill="#CC9A5D" stroke="#3B2A1D" stroke-width="0.6"/>
+        <path d="M2 22 L2 15 L22 15 L22 22 Z" fill="#7EBBC7"/>
+      </svg>
+      砂と水の回廊
+    </a>
+    <nav aria-label="サイト内ナビゲーション">
+      <ul>
+        <li><a href="index.html" class="active">HOME</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <svg class="hero-skyline" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,220 L0,150 L60,150 L60,110 L100,110 L100,150 L180,150 L180,90 L210,60 L240,90 L240,150 L340,150 L340,120 L370,120 L370,150 L470,150
+        C470,110 500,70 560,70 C575,40 605,20 620,20 C635,20 665,40 680,70 C740,70 770,110 770,150
+        L870,150 L870,120 L900,120 L900,150 L980,150 L980,100 L1010,70 L1040,100 L1040,150 L1140,150 L1140,170 L1200,170 L1200,220 Z"
+        fill="#9C6B36" opacity="0.55"/>
+      <path d="M0,220 L0,190 L120,190 L120,160 L400,160
+        C400,120 440,80 500,80 C512,50 540,32 560,32 C580,32 608,50 620,80 C680,80 720,120 720,160
+        L1000,160 L1000,175 L1100,175 L1100,160 L1200,160 L1200,220 Z"
+        fill="#6B4423" opacity="0.75"/>
+    </svg>
+    <div class="hero-inner">
+      <div class="hero-arch">
+        <h1>
+          <span>ANCIENT&nbsp;INDIA&nbsp;JOURNAL</span>
+          砂と水の回廊
+        </h1>
+        <p>インダスの砂、寺院の彫刻、季節風がもたらす雨——<br>古代インドの世界を、日々の記録とともに歩く個人サイトです。</p>
+      </div>
+    </div>
+    <div class="hero-pool" aria-hidden="true"></div>
+    <div class="scroll-cue">SCROLL</div>
+  </section>
+
+  <section class="intro jaali-bg" id="about-teaser">
+    <div class="section-inner intro-grid">
+      <div class="intro-text">
+        <span class="eyebrow">ABOUT THIS SITE</span>
+        <h2>砂と石と水が語る、<br>もうひとつの古代史</h2>
+        <p class="lead">灼熱の砂丘の向こうに、白い大理石の輪郭が揺れて見える。</p>
+        <p>このサイトでは、古代インドの都市遺跡・建築・神話・暮らしをめぐりながら、調べたことや感じたことを少しずつ書き留めています。学術的な正確さよりも、遠い時代の空気に触れる感覚を大切にしています。</p>
+        <p>更新は不定期ですが、訪れるたびに何か新しい発見を持ち帰っていただけたら嬉しいです。</p>
+      </div>
+      <div class="niche">
+        <ul>
+          <li><span class="num">01</span> 都市遺跡と建築様式のメモ</li>
+          <li><span class="num">02</span> 神話・叙事詩の読み解き</li>
+          <li><span class="num">03</span> 旅先で集めた資料と記録写真</li>
+          <li><span class="num">04</span> 日々のこまごまとした日記</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars">
+    <div class="section-inner">
+      <div class="section-head">
+        <span class="eyebrow">EXPLORE</span>
+        <h2>コンテンツを巡る</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="pillar-grid">
+        <div class="pillar">
+          <span class="eyebrow">DIARY</span>
+          <h3>ブログ</h3>
+          <p>日付と短い記録だけの、簡素な日記帳です。読んだ本や思いついたことを綴っています。</p>
+          <a class="pillar-link" href="blog.html">READ MORE →</a>
+        </div>
+        <div class="pillar">
+          <span class="eyebrow">VISUAL</span>
+          <h3>ギャラリー</h3>
+          <p>遺跡や建築、資料をもとにしたイラストや写真をまとめています。</p>
+          <a class="pillar-link" href="gallery.html">VIEW MORE →</a>
+        </div>
+        <div class="pillar">
+          <span class="eyebrow">PROFILE</span>
+          <h3>アバウト</h3>
+          <p>このサイトを作っている人と、古代インドへの関心のきっかけについて。</p>
+          <a class="pillar-link" href="about.html">READ MORE →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="diary">
+    <div class="section-inner">
+      <div class="section-head">
+        <span class="eyebrow">LATEST ENTRIES</span>
+        <h2>最近の日記から</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="diary-list">
+        <div class="diary-row"><time>2026.08.18</time><span>ハラッパーの印章について調べていた。動物のモチーフが多くて面白い。</span></div>
+        <div class="diary-row"><time>2026.08.12</time><span>図書館でモヘンジョダロの排水設備の資料を借りる。街の設計思想に驚く。</span></div>
+        <div class="diary-row"><time>2026.08.05</time><span>ラーマーヤナを少しずつ読み進めている。今日はハヌマーンの章。</span></div>
+      </div>
+      <a class="diary-more" href="blog.html">すべての日記を見る</a>
+    </div>
+  </section>
+
+  <section class="contact jaali-bg">
+    <div class="section-inner">
+      <div class="section-head">
+        <span class="eyebrow">CONTACT</span>
+        <h2>お問い合わせ</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="contact-box">
+        <p>ご感想やご指摘など、お気軽にお送りください。</p>
+        <form action="https://formspree.io/f/maqvpvoz" method="POST">
+          <label for="name">お名前</label>
+          <input type="text" id="name" name="name" required>
+          <label for="email">メールアドレス</label>
+          <input type="email" id="email" name="email" required>
+          <label for="message">メッセージ</label>
+          <textarea id="message" name="message" required></textarea>
+          <button type="submit">送信する</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="index.html">HOME</a>
+      <a href="blog.html">BLOG</a>
+      <a href="gallery.html">GALLERY</a>
+      <a href="about.html">ABOUT</a>
+      <a href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">Azalea Creative Room</a>
+    </div>
+    <div class="footer-notice">
+      本サイトに掲載されたテキスト・画像・イラスト等の無断使用、および生成AIの学習データとしての利用を禁じます。<br>
+      Unauthorized use of any text, images, or illustrations on this site, including use as training data for generative AI, is strictly prohibited.
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 砂と水の回廊</span>
+      <span>Part of Azalea Creative Room</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
